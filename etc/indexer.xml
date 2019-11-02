@@ -1,0 +1,15 @@
+<config
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xsi:noNamespaceSchemaLocation='urn:magento:framework:Indexer/etc/indexer.xsd'
+>
+	<indexer id='customer_grid'>
+		<fieldset name='customer'>
+			<field
+				dataType='date' 
+				handler='RWCandy\Core\Framework\Indexer\Handler\FirstOrder'
+				name='first_date'
+				xsi:type='filterable'
+			/>
+		</fieldset>
+	</indexer>
+</config>
