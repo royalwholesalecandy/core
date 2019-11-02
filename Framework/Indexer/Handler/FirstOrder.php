@@ -8,6 +8,9 @@ use Magento\Framework\Indexer\HandlerInterface as IHandler;
 class FirstOrder implements IHandler {
 	/**
 	 * 2019-11-02
+	 * The current solution (via `LEFT JOIN`) takes just 3 seconds on `bin/magento indexer:reindex customer_grid`.
+	 * The previous colution (via a subquery) took almost 7 minutes on `bin/magento indexer:reindex customer_grid`:
+	 * https://github.com/royalwholesalecandy/core/blob/1.0.0/Framework/Indexer/Handler/FirstOrder.php#L27-L31
 	 * @override
 	 * @see \Magento\Framework\Indexer\HandlerInterface::prepareSql()
 	 * @used-by \Magento\Framework\Indexer\Action\Base::createResultCollection()
@@ -24,10 +27,14 @@ class FirstOrder implements IHandler {
 	 *	}
 	 */
 	function prepareSql(ISourceProvider $cc, $alias, $fieldInfo) {
-		$cc->getSelect()->columns(['first_date' => df_select()
-			->from(['so' => df_table('sales_order')], [])
-			->columns(['first_date' => new \Zend_Db_Expr('MIN(so.created_at)')])
-			->where('e.email = so.customer_email')
-		]);
+		$cc->getSelect()->joinLeft(
+			['so' => df_select()
+				->from(df_table('sales_order'), [])
+				->columns(['email' => 'customer_email', 'first_date' => new \Zend_Db_Expr('MIN(created_at)')])
+				->group('email')
+			]
+			,'e.email = so.email'
+			,['first_date']
+		);
 	}
 }
