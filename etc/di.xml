@@ -1,0 +1,15 @@
+<?xml version='1.0'?>
+<config
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xsi:noNamespaceSchemaLocation='urn:magento:framework:ObjectManager/etc/config.xsd'
+>
+<!-- 2019-11-19
+«Undefined offset: 0 in /vendor/pmclain/magento2-autherizenetcim/Model/Adapter/AuthorizenetAdapter on line 160»:
+https://github.com/royalwholesalecandy/core/issues/17 -->
+	<type name='Pmclain\AuthorizenetCim\Model\Adapter\AuthorizenetAdapter'>
+		<plugin
+			name='RWCandy\Core\Plugin\Pmclain\AuthorizenetCim\Model\Adapter\AuthorizenetAdapter'
+			type='RWCandy\Core\Plugin\Pmclain\AuthorizenetCim\Model\Adapter\AuthorizenetAdapter'
+		/>
+	</type>
+</config>
