@@ -4,3 +4,7 @@
 // Idk if you can make it so it auto adjusts for the customers resolution or whatever they are using»:
 // https://github.com/royalwholesalecandy/core/issues/19
 #custom\.topnav > nav.navigation {z-index: 3 !important;}
+// 2019-12-19 Dmitry Fedyuk https://github.com/mage2pro
+// "The «Proceed to Checkout» button is broken on narrow screens (e.g. on mobile devices)"
+// https://github.com/royalwholesalecandy/core/issues/12
+@media (max-width: 767px) {.cart-container .sticky-wrapper {float: none !important;}}
