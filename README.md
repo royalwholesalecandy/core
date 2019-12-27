@@ -10,6 +10,7 @@ bin/magento setup:upgrade
 rm -rf var/di var/generation generated/code
 bin/magento setup:di:compile
 bin/magento cache:enable
+rm -rf pub/static/*
 bin/magento setup:static-content:deploy -f
 bin/magento maintenance:disable
 ```
