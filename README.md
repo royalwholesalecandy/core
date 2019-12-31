@@ -2,6 +2,7 @@ A custom module for [royalwholesalecandy.com](https://royalwholesalecandy.com) (
 
 ## How to install
 ```
+sudo service crond stop
 bin/magento maintenance:enable
 rm -rf composer.lock
 composer clear-cache
@@ -13,10 +14,12 @@ bin/magento cache:enable
 rm -rf pub/static/*
 bin/magento setup:static-content:deploy -f
 bin/magento maintenance:disable
+sudo service crond start
 ```
 
 ## How to upgrade
 ```
+sudo service crond stop
 bin/magento maintenance:enable
 composer remove royalwholesalecandy/core
 rm -rf composer.lock
@@ -29,4 +32,5 @@ bin/magento cache:enable
 rm -rf pub/static/*
 bin/magento setup:static-content:deploy -f
 bin/magento maintenance:disable
+sudo service crond start
 ```
