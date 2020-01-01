@@ -11,6 +11,7 @@ bin/magento setup:upgrade
 rm -rf var/di var/generation generated/code
 bin/magento setup:di:compile
 bin/magento cache:enable
+redis-cli FLUSHALL
 rm -rf pub/static/*
 bin/magento setup:static-content:deploy -f
 bin/magento maintenance:disable
@@ -29,6 +30,7 @@ bin/magento setup:upgrade
 rm -rf var/di var/generation generated/code
 bin/magento setup:di:compile
 bin/magento cache:enable
+redis-cli FLUSHALL
 rm -rf pub/static/*
 bin/magento setup:static-content:deploy -f
 bin/magento maintenance:disable
