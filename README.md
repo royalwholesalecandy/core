@@ -9,6 +9,7 @@ composer require royalwholesalecandy/core:*
 rm -rf var/di var/generation generated/*
 bin/magento setup:upgrade
 bin/magento cache:enable
+bin/magento setup:di:compile
 redis-cli FLUSHALL
 bin/magento cache:clean
 rm -rf pub/static/*
